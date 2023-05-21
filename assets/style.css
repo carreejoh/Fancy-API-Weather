@@ -44,4 +44,20 @@ header {
 #currentWeatherDiv {
     width: 100%;
     background-color: aqua;
+    margin-bottom: 7%;
+}
+
+#futureWeatherDiv {
+    width: 100%;
+    margin-top: 1%;
+}
+
+.heroCard {
+    border: solid 2px black;
+    margin-left: 1%;
+    margin-bottom: 2%;
+}
+
+.heroCard h3 {
+    text-align: center;
 }
