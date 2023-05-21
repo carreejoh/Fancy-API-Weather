@@ -18,11 +18,23 @@ function appendDataFuture(data) {
         return Math.floor(9/5 * (temp-273) + 32);
     }
 
-    $('#forecast1').children('h3').eq(1).text("temp: " + tempConversion(data.list[4].main.temp));
-    $('#forecast2').children('h3').eq(1).text("temp: " + tempConversion(data.list[12].main.temp));
-    $('#forecast3').children('h3').eq(1).text("temp: " + tempConversion(data.list[20].main.temp));
-    $('#forecast4').children('h3').eq(1).text("temp: " + tempConversion(data.list[28].main.temp));
-    $('#forecast5').children('h3').eq(1).text("temp: " + tempConversion(data.list[36].main.temp));
+    $('#forecast1').children('h3').eq(1).text("Temp: " + tempConversion(data.list[4].main.temp));
+    $('#forecast2').children('h3').eq(1).text("Temp: " + tempConversion(data.list[12].main.temp));
+    $('#forecast3').children('h3').eq(1).text("Temp: " + tempConversion(data.list[20].main.temp));
+    $('#forecast4').children('h3').eq(1).text("Temp: " + tempConversion(data.list[28].main.temp));
+    $('#forecast5').children('h3').eq(1).text("Temp: " + tempConversion(data.list[36].main.temp));
+
+    $('#forecast1').children('h3').eq(2).text("Wind: " + (data.list[4].wind.speed + " mph"));
+    $('#forecast2').children('h3').eq(2).text("Wind: " + (data.list[12].wind.speed + " mph"));
+    $('#forecast3').children('h3').eq(2).text("Wind: " + (data.list[20].wind.speed + " mph"));
+    $('#forecast4').children('h3').eq(2).text("Wind: " + (data.list[28].wind.speed + " mph"));
+    $('#forecast5').children('h3').eq(2).text("Wind: " + (data.list[36].wind.speed + " mph"));
+
+    $('#forecast1').children('h3').eq(3).text("Humidity: " + (data.list[4].main.humidity) + "%");
+    $('#forecast2').children('h3').eq(3).text("Humidity: " + (data.list[12].main.humidity) + "%");
+    $('#forecast3').children('h3').eq(3).text("Humidity: " + (data.list[20].main.humidity) + "%");
+    $('#forecast4').children('h3').eq(3).text("Humidity: " + (data.list[28].main.humidity) + "%");
+    $('#forecast5').children('h3').eq(3).text("Humidity: " + (data.list[36].main.humidity) + "%");
 }
 
 
