@@ -49,12 +49,14 @@ function appendCurrentWeather(data) {
     var epoch = data.dt;
     var date = new Date(epoch * 1000);
     console.log(date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
+    var realMonth = date.getMonth() + 1;
+
 
     function tempConversion(temp) {
         return Math.floor(9/5 * (temp-273) + 32);
     }
 
-    $('#currentDate').text(date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
+    $('#currentDate').text(date.getFullYear() + "-" + realMonth + "-" + date.getDate());
     $('#currentTemp').text("Temperature: " + tempConversion(data.main.temp));
     $('#currentWind').text("Wind: " + data.wind.speed + "mph");
     $('#currentHumdity').text("Humidity: " + data.main.humidity + "%");
