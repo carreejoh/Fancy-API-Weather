@@ -41,3 +41,6 @@ https://github.com/Carreejoh
 
 # Screenshot
 
+![image](https://github.com/carreejoh/Fancy-API-Weather/assets/122936256/3aa75b10-5b78-4491-a3c5-91439004c638)
+
+
