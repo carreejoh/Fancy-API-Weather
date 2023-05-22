@@ -16,6 +16,12 @@ function appendDataFuture(data) {
         return Math.floor(9/5 * (temp-273) + 32);
     }
 
+    $('#forecast1').children('img').eq(0).attr("src", "https://openweathermap.org/img/wn/" + data.list[4].weather[0].icon + "@2x.png");
+    $('#forecast2').children('img').eq(0).attr("src", "https://openweathermap.org/img/wn/" + data.list[12].weather[0].icon + "@2x.png");
+    $('#forecast3').children('img').eq(0).attr("src", "https://openweathermap.org/img/wn/" + data.list[20].weather[0].icon + "@2x.png");
+    $('#forecast4').children('img').eq(0).attr("src", "https://openweathermap.org/img/wn/" + data.list[28].weather[0].icon + "@2x.png");
+    $('#forecast5').children('img').eq(0).attr("src", "https://openweathermap.org/img/wn/" + data.list[36].weather[0].icon + "@2x.png");
+
     $('#forecast1').children('h3').eq(1).text("Temp: " + tempConversion(data.list[4].main.temp));
     $('#forecast2').children('h3').eq(1).text("Temp: " + tempConversion(data.list[12].main.temp));
     $('#forecast3').children('h3').eq(1).text("Temp: " + tempConversion(data.list[20].main.temp));
@@ -40,13 +46,19 @@ function appendDataFuture(data) {
 function appendCurrentWeather(data) {
     console.log(data);
 
+    var epoch = data.dt;
+    var date = new Date(epoch * 1000);
+    console.log(date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
+
     function tempConversion(temp) {
         return Math.floor(9/5 * (temp-273) + 32);
     }
 
+    $('#currentDate').text(date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate());
     $('#currentTemp').text("Temperature: " + tempConversion(data.main.temp));
     $('#currentWind').text("Wind: " + data.wind.speed + "mph");
     $('#currentHumdity').text("Humidity: " + data.main.humidity + "%");
+    $('#currentForecast').attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
 }
 
 
