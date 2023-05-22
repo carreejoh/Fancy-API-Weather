@@ -80,17 +80,45 @@ function findWeatherCurrent(tempLat, tempLon) {
 
 
 function loadLocalCities(tempCity) {
+    let loadCitiesJSON = (JSON.parse(localStorage.getItem('recentCities')));
+    if(loadCitiesJSON.includes(tempCity)) {
+
+    } else {
+        let recentCityLinkDiv = document.createElement('div');
+        let recentCityLink = document.createElement('a');
+        recentCityLink.append(tempCity.replace(/_/g," "));
+        recentCityLinkDiv.append(recentCityLink);
+        $('#recentCityList').append(recentCityLinkDiv);
+    }
+
     let loadCities = (localStorage.getItem('recentCities'));
     if (loadCities === null) {
         localStorage.setItem('recentCities', '["salt_lake_city"]');
+    } else if(loadCities.includes(tempCity)) {
+        
     } else {
         let addACity = JSON.parse(localStorage.getItem('recentCities'));
         addACity.push(tempCity);
         localStorage.setItem('recentCities', JSON.stringify(addACity));
-    }
+    };
+
 }
 
+function onLoadCities() {
+    let loadCities = (JSON.parse(localStorage.getItem('recentCities')));
+    console.log((loadCities));
+    for(i = 0; i < 100; i++) {
+        if(loadCities[i] === undefined) {
 
+        } else {
+            let recentCityLinkDiv = document.createElement('div');
+            let recentCityLink = document.createElement('a');
+            recentCityLink.append(loadCities[i].replace(/_/g," "));
+            recentCityLinkDiv.append(recentCityLink);
+            $('#recentCityList').append(recentCityLinkDiv);
+        }
+    }
+}
 
 function findCoords() {
     let tempCity = searchedCity.value;
@@ -119,4 +147,4 @@ function findCoords() {
 
 citySearch.addEventListener('click', findCoords);
 
-window.addEventListener('load', findWeather(40.7596198, -111.8867975), findWeatherCurrent(40.7596198, -111.8867975), loadLocalCities("salt_lake_city"));
+window.addEventListener('load', findWeather(40.7596198, -111.8867975), findWeatherCurrent(40.7596198, -111.8867975), loadLocalCities("salt_lake_city"), onLoadCities());

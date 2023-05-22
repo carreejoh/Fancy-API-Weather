@@ -61,3 +61,20 @@ header {
 .heroCard h3 {
     text-align: center;
 }
+
+/* For recent city section */ 
+
+#recentCityList a {
+    color: black;
+    font-size: 24px;
+}
+
+#recentCityList a:hover {
+    color: gray;
+    cursor: pointer;
+}
+
+#recentCityList div {
+    margin-top: 4%;
+    padding-left: 3%;
+}
