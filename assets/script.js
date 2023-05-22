@@ -2,8 +2,6 @@ let citySearch = document.querySelector('#citySearchSubmit');
 let searchedCity = document.querySelector('#citySearch');
 
 
-
-
 function appendDataFuture(data) {
     console.log(data);
     $('#currentWeatherName').text(data.city.name);
@@ -81,13 +79,17 @@ function findWeatherCurrent(tempLat, tempLon) {
 
 function loadLocalCities(tempCity) {
     let loadCitiesJSON = (JSON.parse(localStorage.getItem('recentCities')));
-    if(loadCitiesJSON.includes(tempCity)) {
+    
+    if(loadCitiesJSON === null) {
+
+    } else if(loadCitiesJSON.includes(tempCity)) {
 
     } else {
         let recentCityLinkDiv = document.createElement('div');
         let recentCityLink = document.createElement('a');
         recentCityLink.append(tempCity.replace(/_/g," "));
         recentCityLinkDiv.append(recentCityLink);
+        recentCityLink.classList.add("newCityLink");
         $('#recentCityList').append(recentCityLinkDiv);
     }
 
@@ -115,6 +117,7 @@ function onLoadCities() {
             let recentCityLink = document.createElement('a');
             recentCityLink.append(loadCities[i].replace(/_/g," "));
             recentCityLinkDiv.append(recentCityLink);
+            recentCityLink.classList.add("newCityLink");
             $('#recentCityList').append(recentCityLinkDiv);
         }
     }
@@ -125,7 +128,10 @@ function findCoords() {
     tempCity=tempCity.replace(/ /g,"_");
 
     loadLocalCities(tempCity);
+    fetchCoords(tempCity);
+};
 
+function fetchCoords(tempCity) {
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + tempCity + '&limit=&appid=bd4cfacd3adbb7dbb84ff559c0b71f94')
     .then((response) => {
         return response.json();
@@ -140,11 +146,14 @@ function findCoords() {
         } else {
             alert("Sorry this city is not in the USA");
         }
-    })
-};
-
-
+    })};
 
 citySearch.addEventListener('click', findCoords);
 
 window.addEventListener('load', findWeather(40.7596198, -111.8867975), findWeatherCurrent(40.7596198, -111.8867975), loadLocalCities("salt_lake_city"), onLoadCities());
+
+$('#recentCityList').click(function(event) {
+    let chosenLink = event.target;
+    console.log(chosenLink.textContent);
+    fetchCoords(chosenLink.textContent);
+})
