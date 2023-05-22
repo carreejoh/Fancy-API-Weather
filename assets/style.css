@@ -34,6 +34,7 @@ header {
 
 /* Forecast and Weather Data */
 
+
 #weatherDisplayDiv {
     background-color: var(--lightblue);
     padding: 1%;
@@ -43,7 +44,6 @@ header {
 
 #currentWeatherDiv {
     width: 100%;
-    background-color: aqua;
     margin-bottom: 7%;
 }
 
